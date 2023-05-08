@@ -20,6 +20,6 @@ https://varsh2.atlassian.net/jira/software/projects/ALMS/boards/1/roadmap
 
 Figma Links for Component Diagrams – 
 
-(a)	https://www.figma.com/file/nPCj2tnNZl4GWAOqQvReMp/Untitled?node-id=2%3A2&t=uI7hJV29r5i1Jztz-1
+(a)	Web Application - https://www.figma.com/file/nPCj2tnNZl4GWAOqQvReMp/Untitled?node-id=2%3A2&t=uI7hJV29r5i1Jztz-1
 
-(b)	https://www.figma.com/file/nPCj2tnNZl4GWAOqQvReMp/Untitled?node-id=20%3A2&t=uI7hJV29r5i1Jztz-1
+(b)	Mobile Application - https://www.figma.com/file/nPCj2tnNZl4GWAOqQvReMp/Untitled?node-id=20%3A2&t=uI7hJV29r5i1Jztz-1
