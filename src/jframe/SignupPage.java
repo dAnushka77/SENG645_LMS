@@ -87,7 +87,7 @@ public class SignupPage extends javax.swing.JFrame {
              boolean isExist= false;
               try{
                    Class.forName("com.mysql.cj.jdbc.Driver");
-                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","Marlboro123@");
+                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
                    
                   PreparedStatement pst = con.prepareStatement("select*from users where name=?");
                   pst.setString(1, name);
@@ -122,6 +122,9 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -148,26 +151,38 @@ public class SignupPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("HP Simplified", 3, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("HP Simplified", 3, 44)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("University of Maryland, Baltimore County ");
         jLabel1.setAutoscrolls(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 900, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 980, 50));
 
-        jLabel2.setFont(new java.awt.Font("HP Simplified", 3, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("HP Simplified", 3, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Advance Library Management System");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 780, 70));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 780, 70));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/library-book-bookshelf-read.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 290));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, -100, 940, 480));
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Library-Automation-01.png"))); // NOI18N
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 290));
+
+        jLabel16.setForeground(new java.awt.Color(232, 0, 0));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/umb.png"))); // NOI18N
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 400, 370));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 1350));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Dawgs-Eye-View-Retriever19-6895-scaled.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1200, -350, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-920, 210, 2120, 820));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 830));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 940));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -180,7 +195,7 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("HP Simplified", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Create new account here");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 270, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 330, -1));
 
         jLabel7.setFont(new java.awt.Font("HP Simplified", 3, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -279,9 +294,9 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel15.setText("or");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 20, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, 640, 830));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 640, 940));
 
-        setSize(new java.awt.Dimension(1537, 835));
+        setSize(new java.awt.Dimension(1684, 943));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -355,6 +370,8 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -365,6 +382,7 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle1;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
     private app.bolivia.swing.JCTextField txt_contact;
