@@ -13,7 +13,8 @@ The main functionalities of the system include -
 4) Manage Books for admin to manage book information and register those into the system.
 5) Manage Students for admin to manage student data (who borrow books).
 6) Issue Books Page to issue books to students.
-7) Delete Book to return borrowed books.
+7) Issued Books Page to fetch details of a book issued to a user.
+8) Delete Book to return borrowed books.
 
 The JIRA Project Tracker Link for the project is - 
 https://varsh2.atlassian.net/jira/software/projects/ALMS/boards/1/roadmap
