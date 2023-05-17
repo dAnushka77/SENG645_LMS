@@ -23,7 +23,7 @@ public class ManageBooks extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooks
      */
-    String bookName,author;
+    String bookName,author,bookNamee;
     int quantity,bookId;
     DefaultTableModel model;
     
@@ -34,7 +34,7 @@ public class ManageBooks extends javax.swing.JFrame {
              public void setBookDetailsToTable(){
                  try{
                   Class.forName("com.mysql.cj.jdbc.Driver");
-                  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","Marlboro123@");
+                  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
 
                   Statement st= con.createStatement();
                   ResultSet rs= st.executeQuery("select*from book_details");
@@ -134,12 +134,44 @@ e.printStackTrace();
          e.printStackTrace();
         }
        return isDeleted;
-}
-          public void clearTable(){
+}     
+           public void clearTable(){
           DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
           model.setRowCount(0);
 }
-          
+  
+           
+           
+           public void findBook(){
+               String bookNamee = lbl_bookname.getText();
+               
+               try{
+                   Connection con = DBConnection.getConnection();
+                    String sql = " select*from book_details where book_name=?";
+                    PreparedStatement pst = con.prepareStatement(sql);
+   
+                    pst.setString(1,bookNamee);
+                    
+                    ResultSet rs = pst.executeQuery();
+                    if(rs.next()){
+                        txt_bookID.setText(rs.getString("book_id"));
+                        txt_bookName.setText(rs.getString("book_name"));
+                        txt_author.setText(rs.getString("author"));
+                        txt_quantity.setText(rs.getString("quantity"));
+                        lbl_errorr.setText(rs.getString(""));
+                    }else{
+                        txt_bookID.setText("");
+                        txt_bookName.setText("");
+                        txt_author.setText("");
+                        txt_quantity.setText("");
+                        lbl_errorr.setText("book not found");
+                    }
+                   
+               }catch (Exception e){
+         e.printStackTrace();
+               
+           }}
+            
 
 
     /**
@@ -153,6 +185,10 @@ e.printStackTrace();
 
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        txt_bookID = new app.bolivia.swing.JCTextField();
+        txt_quantity = new app.bolivia.swing.JCTextField();
+        txt_bookName = new app.bolivia.swing.JCTextField();
+        txt_author = new app.bolivia.swing.JCTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -160,13 +196,28 @@ e.printStackTrace();
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        rSMaterialButtonCircle3 = new rojerusan.RSMaterialButtonCircle();
+        rSMaterialButtonCircle4 = new rojerusan.RSMaterialButtonCircle();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        rSMaterialButtonCircle5 = new rojerusan.RSMaterialButtonCircle();
+        lbl_errorr = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle3 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle4 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle5 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle6 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle7 = new rojerusan.RSMaterialButtonRectangle();
+        lbl_bookname = new app.bolivia.swing.JCTextField();
+        jLabel4 = new javax.swing.JLabel();
+        rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -177,6 +228,59 @@ e.printStackTrace();
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Contact_26px.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 30, 50));
+
+        txt_bookID.setBackground(new java.awt.Color(0, 0, 0));
+        txt_bookID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txt_bookID.setForeground(new java.awt.Color(255, 255, 255));
+        txt_bookID.setPhColor(new java.awt.Color(255, 255, 255));
+        txt_bookID.setPlaceholder("enter Book ID...");
+        txt_bookID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_bookIDFocusLost(evt);
+            }
+        });
+        jPanel1.add(txt_bookID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 280, -1));
+
+        txt_quantity.setBackground(new java.awt.Color(0, 0, 0));
+        txt_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txt_quantity.setForeground(new java.awt.Color(255, 255, 255));
+        txt_quantity.setPhColor(new java.awt.Color(255, 255, 255));
+        txt_quantity.setPlaceholder("Number of Books...");
+        txt_quantity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_quantityFocusLost(evt);
+            }
+        });
+        txt_quantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_quantityActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 280, -1));
+
+        txt_bookName.setBackground(new java.awt.Color(0, 0, 0));
+        txt_bookName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txt_bookName.setForeground(new java.awt.Color(255, 255, 255));
+        txt_bookName.setPhColor(new java.awt.Color(255, 255, 255));
+        txt_bookName.setPlaceholder("enter book name...");
+        txt_bookName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_bookNameFocusLost(evt);
+            }
+        });
+        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 280, -1));
+
+        txt_author.setBackground(new java.awt.Color(0, 0, 0));
+        txt_author.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        txt_author.setForeground(new java.awt.Color(255, 255, 255));
+        txt_author.setPhColor(new java.awt.Color(255, 255, 255));
+        txt_author.setPlaceholder("enter the name of author...");
+        txt_author.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_authorFocusLost(evt);
+            }
+        });
+        jPanel1.add(txt_author, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 280, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Moleskine_26px.png"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -210,6 +314,24 @@ e.printStackTrace();
         jLabel14.setText("Author Name");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 100, -1));
 
+        rSMaterialButtonCircle3.setBackground(new java.awt.Color(255, 0, 51));
+        rSMaterialButtonCircle3.setText(" Delete   ");
+        rSMaterialButtonCircle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonCircle3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rSMaterialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 520, 640, 60));
+
+        rSMaterialButtonCircle4.setBackground(new java.awt.Color(0, 153, 0));
+        rSMaterialButtonCircle4.setText("Add");
+        rSMaterialButtonCircle4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonCircle4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rSMaterialButtonCircle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 400, 680, 60));
+
         jPanel4.setBackground(new java.awt.Color(255, 153, 0));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -234,35 +356,166 @@ e.printStackTrace();
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 670));
+        rSMaterialButtonCircle5.setBackground(new java.awt.Color(51, 0, 255));
+        rSMaterialButtonCircle5.setText("Update ");
+        rSMaterialButtonCircle5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonCircle5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rSMaterialButtonCircle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 460, 580, 60));
+
+        lbl_errorr.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
+        lbl_errorr.setForeground(new java.awt.Color(255, 153, 0));
+        jPanel1.add(lbl_errorr, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 250, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 830));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("HP Simplified", 3, 24)); // NOI18N
+        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Book ID", "Book Name", "Author", "Quantity "
+            }
+        ));
+        tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(255, 153, 0));
+        tbl_bookDetails.setRowHeight(40);
+        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_bookDetailsMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_bookDetails);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 960, 300));
+
+        jLabel3.setFont(new java.awt.Font("HP Simplified", 3, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 102, 0));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Books_52px_1.png"))); // NOI18N
         jLabel3.setText("Directory ");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 50));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, 50));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 0, 0));
+        rSMaterialButtonRectangle2.setText("Log Out");
+        rSMaterialButtonRectangle2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle2ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle3.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle3.setText("Home");
+        rSMaterialButtonRectangle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle3ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle4.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle4.setText("Student Portal");
+        rSMaterialButtonRectangle4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle4ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle5.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle5.setText("Issue books");
+        rSMaterialButtonRectangle5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle5ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle6.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle6.setText("Return Book");
+        rSMaterialButtonRectangle6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle6ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle7.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle7.setText("Issued Books");
+        rSMaterialButtonRectangle7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rSMaterialButtonRectangle3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSMaterialButtonRectangle6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rSMaterialButtonRectangle3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 700, 40));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 850, 40));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 790, 670));
+        lbl_bookname.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 153, 0)));
+        lbl_bookname.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbl_bookname.setPhColor(new java.awt.Color(255, 153, 0));
+        lbl_bookname.setPlaceholder("enter book name...");
+        lbl_bookname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lbl_booknameFocusLost(evt);
+            }
+        });
+        lbl_bookname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbl_booknameActionPerformed(evt);
+            }
+        });
+        jPanel3.add(lbl_bookname, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 420, -1));
 
-        setSize(new java.awt.Dimension(1297, 679));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel4.setText("Search:");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 150, -1));
+
+        rSMaterialButtonRectangle1.setBackground(new java.awt.Color(0, 153, 255));
+        rSMaterialButtonRectangle1.setText("Search");
+        rSMaterialButtonRectangle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 150, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 1050, 830));
+
+        setSize(new java.awt.Dimension(1553, 835));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -366,6 +619,24 @@ JOptionPane.showMessageDialog(this,"Book Updation Failed");
        dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle6ActionPerformed
 
+    private void rSMaterialButtonRectangle7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle7ActionPerformed
+              IssuedBooks issued = new IssuedBooks();
+          issued.setVisible(true);
+           dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle7ActionPerformed
+
+    private void lbl_booknameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lbl_booknameFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_booknameFocusLost
+
+    private void rSMaterialButtonRectangle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle1ActionPerformed
+       findBook();        // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle1ActionPerformed
+
+    private void lbl_booknameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbl_booknameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_booknameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +681,7 @@ JOptionPane.showMessageDialog(this,"Book Updation Failed");
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -418,5 +690,23 @@ JOptionPane.showMessageDialog(this,"Book Updation Failed");
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private app.bolivia.swing.JCTextField lbl_bookname;
+    private javax.swing.JLabel lbl_errorr;
+    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle3;
+    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle4;
+    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle5;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle4;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle5;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle6;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle7;
+    private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
+    private app.bolivia.swing.JCTextField txt_author;
+    private app.bolivia.swing.JCTextField txt_bookID;
+    private app.bolivia.swing.JCTextField txt_bookName;
+    private app.bolivia.swing.JCTextField txt_quantity;
     // End of variables declaration//GEN-END:variables
 }
