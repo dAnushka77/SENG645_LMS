@@ -34,7 +34,7 @@ public class ManageStudents extends javax.swing.JFrame {
              public void setStudentDetailsToTable(){
                  try{
                   Class.forName("com.mysql.cj.jdbc.Driver");
-                  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","Marlboro123@");
+                  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
 
                   Statement st= con.createStatement();
                   ResultSet rs= st.executeQuery("select*from student_details");
@@ -179,6 +179,7 @@ e.printStackTrace();
         rSMaterialButtonRectangle4 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle6 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle7 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle5 = new rojerusan.RSMaterialButtonRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -303,7 +304,7 @@ e.printStackTrace();
         combo_courseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UG", "Graduate", "PG", "PHD" }));
         jPanel1.add(combo_courseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 280, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 670));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 820));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -316,6 +317,7 @@ e.printStackTrace();
                 "Student ID", "Name", "Course", "Branch"
             }
         ));
+        tbl_studentDetails.setColorBackgoundHead(new java.awt.Color(255, 153, 0));
         tbl_studentDetails.setRowHeight(40);
         tbl_studentDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -324,7 +326,7 @@ e.printStackTrace();
         });
         jScrollPane2.setViewportView(tbl_studentDetails);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 670, 230));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 940, 320));
 
         jLabel3.setFont(new java.awt.Font("HP Simplified", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 102, 0));
@@ -342,7 +344,7 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle3.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle3.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle3.setText("Home");
         rSMaterialButtonRectangle3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,7 +352,7 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle4.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle4.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle4.setText("Manage Books");
         rSMaterialButtonRectangle4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,7 +360,7 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle6.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle6.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle6.setText("Issue books");
         rSMaterialButtonRectangle6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,11 +368,19 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle7.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle7.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle7.setText("Return Book");
         rSMaterialButtonRectangle7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSMaterialButtonRectangle7ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle5.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle5.setText("Issued Books");
+        rSMaterialButtonRectangle5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle5ActionPerformed(evt);
             }
         });
 
@@ -384,12 +394,14 @@ e.printStackTrace();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(rSMaterialButtonRectangle6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(56, 56, 56))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,15 +411,16 @@ e.printStackTrace();
                     .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSMaterialButtonRectangle6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSMaterialButtonRectangle7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 710, 40));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 840, 40));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 790, 670));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 1060, 820));
 
-        setSize(new java.awt.Dimension(1297, 679));
+        setSize(new java.awt.Dimension(1565, 824));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -487,8 +500,8 @@ JOptionPane.showMessageDialog(this,"Student Details Updation Failed");
     }//GEN-LAST:event_rSMaterialButtonRectangle4ActionPerformed
 
     private void rSMaterialButtonRectangle6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle6ActionPerformed
-  DeleteBook delete= new DeleteBook();
-       delete.setVisible(true);
+  IssueBooks issue = new IssueBooks();
+       issue.setVisible(true);
        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle6ActionPerformed
 
@@ -497,6 +510,12 @@ JOptionPane.showMessageDialog(this,"Student Details Updation Failed");
        delete.setVisible(true);
        dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle7ActionPerformed
+
+    private void rSMaterialButtonRectangle5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle5ActionPerformed
+ IssuedBooks issued = new IssuedBooks();
+          issued.setVisible(true);
+           dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -560,6 +579,7 @@ JOptionPane.showMessageDialog(this,"Student Details Updation Failed");
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle4;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle5;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle6;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle7;
     private rojeru_san.complementos.RSTableMetro tbl_studentDetails;
