@@ -73,7 +73,7 @@ int studentId = Integer.parseInt( txt_studentID.getText());
 
 try{
 Connection con = DBConnection.getConnection();
-String sql = " update issue_bookdetails set status=?, where student_id=? and book_id=? and status=?";
+String sql = " update issue_bookdetails set status=? where student_id=? and book_id=? and status=?";
 
 PreparedStatement pst = con.prepareStatement(sql);
 pst.setString(1,"returned");
@@ -135,10 +135,11 @@ e.printStackTrace();
         rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle3 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle4 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle5 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle8 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lbl_bookError = new javax.swing.JLabel();
@@ -175,7 +176,7 @@ e.printStackTrace();
         jLabel1.setFont(new java.awt.Font("HP Simplified Hans", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Return Book ");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, -20, 290, 80));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, -20, 410, 90));
 
         rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 0, 0));
         rSMaterialButtonRectangle1.setText("Log out ");
@@ -184,7 +185,7 @@ e.printStackTrace();
                 rSMaterialButtonRectangle1ActionPerformed(evt);
             }
         });
-        jPanel3.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, -10, 120, -1));
+        jPanel3.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, -10, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("MV Boli", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,19 +207,16 @@ e.printStackTrace();
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1530, 80));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(0, 204, 204));
-        rSMaterialButtonRectangle2.setText("Issued Books");
-
-        rSMaterialButtonRectangle3.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle3.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle3.setText("Home");
         rSMaterialButtonRectangle3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +224,7 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle4.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle4.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle4.setText("Student Portal");
         rSMaterialButtonRectangle4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,11 +232,27 @@ e.printStackTrace();
             }
         });
 
-        rSMaterialButtonRectangle5.setBackground(new java.awt.Color(0, 204, 204));
+        rSMaterialButtonRectangle5.setBackground(new java.awt.Color(0, 0, 0));
         rSMaterialButtonRectangle5.setText("Manage books");
         rSMaterialButtonRectangle5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSMaterialButtonRectangle5ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle8.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle8.setText("Issued Books");
+        rSMaterialButtonRectangle8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle8ActionPerformed(evt);
+            }
+        });
+
+        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(0, 0, 0));
+        rSMaterialButtonRectangle2.setText("Issue Book");
+        rSMaterialButtonRectangle2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonRectangle2ActionPerformed(evt);
             }
         });
 
@@ -253,22 +267,25 @@ e.printStackTrace();
                 .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSMaterialButtonRectangle8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSMaterialButtonRectangle3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSMaterialButtonRectangle4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSMaterialButtonRectangle5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 560, 40));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 90, 710, 40));
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 0));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -276,53 +293,53 @@ e.printStackTrace();
         jLabel3.setFont(new java.awt.Font("HP Simplified", 3, 36)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Literature_100px_1.png"))); // NOI18N
         jLabel3.setText("Book Details");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 310, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 330, -1));
 
         lbl_bookError.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 220, 30));
+        jPanel5.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, 220, 30));
 
         lbl_dueDate.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 200, 30));
+        jPanel5.add(lbl_dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 200, 30));
 
         txt_bookName.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
         txt_bookName.setText("   Book Name:");
-        jPanel5.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 150, -1));
+        jPanel5.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 160, -1));
 
         txt_duedate.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
         txt_duedate.setText("Due Date:");
-        jPanel5.add(txt_duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 120, -1));
+        jPanel5.add(txt_duedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 120, -1));
 
         txt_issueId.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
         txt_issueId.setText("     Issue ID:");
-        jPanel5.add(txt_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 140, -1));
+        jPanel5.add(txt_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 140, -1));
 
         lbl_issueId.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 210, 30));
+        jPanel5.add(lbl_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 210, 30));
 
         lbl_studentName.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 200, 30));
+        jPanel5.add(lbl_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 200, 30));
 
         lbl_issueDate.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 190, 30));
+        jPanel5.add(lbl_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 30));
 
         txt_issuedate.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
         txt_issuedate.setText("Issue Date:");
-        jPanel5.add(txt_issuedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 120, -1));
+        jPanel5.add(txt_issuedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 130, -1));
 
         txt_studentName.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
         txt_studentName.setText("Student Name:");
-        jPanel5.add(txt_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 180, -1));
+        jPanel5.add(txt_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 180, -1));
 
         lbl_bookName.setFont(new java.awt.Font("HP Simplified Hans", 2, 24)); // NOI18N
-        jPanel5.add(lbl_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 210, 30));
+        jPanel5.add(lbl_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 210, 30));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 450, 520));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 500, 640));
 
         jLabel4.setFont(new java.awt.Font("HP Simplified", 3, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 102, 0));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Books_52px_1.png"))); // NOI18N
         jLabel4.setText("Return Book ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, 360, -1));
 
         txt_studentID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 102, 0)));
         txt_studentID.setPlaceholder("Please enter Student ID .");
@@ -336,7 +353,7 @@ e.printStackTrace();
                 txt_studentIDActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_studentID, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, 240, -1));
+        jPanel1.add(txt_studentID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 490, 240, -1));
 
         txt_bookID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 102, 0)));
         txt_bookID.setPlaceholder("Please enter Book ID...");
@@ -350,17 +367,17 @@ e.printStackTrace();
                 txt_bookIDActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_bookID, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 240, -1));
+        jPanel1.add(txt_bookID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 380, 240, -1));
 
         txt_bookId.setFont(new java.awt.Font("HP Simplified", 2, 24)); // NOI18N
         txt_bookId.setForeground(new java.awt.Color(255, 102, 51));
         txt_bookId.setText("Book ID:");
-        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 90, -1));
+        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 110, -1));
 
         txt_studentId.setFont(new java.awt.Font("HP Simplified", 2, 24)); // NOI18N
         txt_studentId.setForeground(new java.awt.Color(255, 102, 51));
         txt_studentId.setText(" Student ID: ");
-        jPanel1.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 120, -1));
+        jPanel1.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 480, 150, -1));
 
         rSMaterialButtonRectangle6.setBackground(new java.awt.Color(0, 0, 255));
         rSMaterialButtonRectangle6.setBorder(new javax.swing.border.MatteBorder(null));
@@ -370,7 +387,7 @@ e.printStackTrace();
                 rSMaterialButtonRectangle6ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSMaterialButtonRectangle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, -1, -1));
+        jPanel1.add(rSMaterialButtonRectangle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 590, -1, -1));
 
         rSMaterialButtonRectangle7.setBackground(new java.awt.Color(255, 102, 0));
         rSMaterialButtonRectangle7.setBorder(new javax.swing.border.MatteBorder(null));
@@ -380,11 +397,11 @@ e.printStackTrace();
                 rSMaterialButtonRectangle7ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSMaterialButtonRectangle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
+        jPanel1.add(rSMaterialButtonRectangle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 710, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 660));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1530, 900));
 
-        setSize(new java.awt.Dimension(1273, 666));
+        setSize(new java.awt.Dimension(1527, 890));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -448,6 +465,18 @@ e.printStackTrace();
                  JOptionPane.showMessageDialog(this,"book returned successfully");
 }        
     }//GEN-LAST:event_rSMaterialButtonRectangle7ActionPerformed
+
+    private void rSMaterialButtonRectangle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle2ActionPerformed
+ IssueBooks issue = new IssueBooks();
+        issue.setVisible(true);
+        dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle2ActionPerformed
+
+    private void rSMaterialButtonRectangle8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle8ActionPerformed
+ IssuedBooks issued = new IssuedBooks();
+          issued.setVisible(true);
+           dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle8ActionPerformed
    
     /**
      * @param args the command line arguments
@@ -508,6 +537,7 @@ e.printStackTrace();
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle5;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle6;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle7;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle8;
     private app.bolivia.swing.JCTextField txt_bookID;
     private javax.swing.JLabel txt_bookId;
     private javax.swing.JLabel txt_bookName;
